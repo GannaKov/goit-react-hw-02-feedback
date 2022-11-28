@@ -1,16 +1,22 @@
 import React from 'react';
 
-export const FeedbackOptions = () => (
+export const FeedbackOptions = ({ onGood, onBad, onNeutral }) => (
   <div>
     <ul>
       <li>
-        <button type="button">Good</button>
+        <button type="button" onClick={onGood}>
+          Good
+        </button>
       </li>
       <li>
-        <button type="button">Neutral</button>
+        <button type="button" onClick={onNeutral}>
+          Neutral
+        </button>
       </li>
       <li>
-        <button type="button">Bad</button>
+        <button type="button" onClick={onBad}>
+          Bad
+        </button>
       </li>
     </ul>
   </div>

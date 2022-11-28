@@ -1,7 +1,8 @@
 import React from 'react';
-export const Statistics = () => (
+export const Statistics = ({ valueGood, valueNeutral, valueBad }) => (
   <div>
-    <span>Good</span> <span>Neutral</span> <span>Bad</span>
+    <span>Good{valueGood}</span> <span>Neutral{valueNeutral}</span>
+    <span>Bad{valueBad}</span>
     <span>Total</span> <span>Positive feedback</span>
   </div>
 );
