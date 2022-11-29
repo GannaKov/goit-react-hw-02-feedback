@@ -4,11 +4,13 @@ export const Statistics = ({
   valueNeutral,
   valueBad,
   totalFeedback,
+  positiveFeedbackPercentage,
 }) => (
   <div>
     <span>Good{valueGood}</span>
     <span>Neutral{valueNeutral}</span>
     <span>Bad{valueBad}</span>
-    <span>Total{totalFeedback}</span> <span>Positive feedback</span>
+    <span>Total{totalFeedback}</span>{' '}
+    <span>Positive feedback{positiveFeedbackPercentage}</span>
   </div>
 );
