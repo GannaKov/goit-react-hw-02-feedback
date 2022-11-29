@@ -3,6 +3,8 @@ import { GlobalStyle } from 'CreateGlobalStyle';
 import { SectionPart } from 'components/Section/Section';
 import { FeedbackOptions } from 'components/FeedbackSection/Feedback';
 import { Statistics } from 'components/Statictics/Statistics';
+import { Notification } from 'components/Section/Notification';
+
 export class App extends Component {
   static defaultProps = {
     good: 0,
@@ -45,7 +47,7 @@ export class App extends Component {
   render() {
     const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
     const totalFeedback = this.countTotalFeedback();
-    console.log(positiveFeedbackPercentage);
+    console.log(totalFeedback);
     const valueGood = this.state.valueGood;
     const valueNeutral = this.state.valueNeutral;
     const valueBad = this.state.valueBad;
@@ -61,13 +63,17 @@ export class App extends Component {
           />
         </SectionPart>
         <SectionPart title="Statistics">
-          <Statistics
-            valueGood={valueGood}
-            valueNeutral={valueNeutral}
-            valueBad={valueBad}
-            totalFeedback={totalFeedback}
-            positiveFeedbackPercentage={positiveFeedbackPercentage}
-          />
+          {totalFeedback ? (
+            <Statistics
+              valueGood={valueGood}
+              valueNeutral={valueNeutral}
+              valueBad={valueBad}
+              totalFeedback={totalFeedback}
+              positiveFeedbackPercentage={positiveFeedbackPercentage}
+            />
+          ) : (
+            <Notification />
+          )}
         </SectionPart>
       </div>
     );
