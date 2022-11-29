@@ -17,8 +17,7 @@ export class App extends Component {
     valueBad: this.props.bad,
   };
 
-  handleGood = evt => {
-    console.dir(evt.target);
+  handleGood = () => {
     this.setState(prevState => ({
       valueGood: prevState.valueGood + 1,
     }));
@@ -35,10 +34,6 @@ export class App extends Component {
   };
 
   countTotalFeedback() {
-    console.log(this.state);
-    // const totalFeedback =
-    //   this.state.valueGood + this.state.valueBad + this.state.valueNeutral;
-
     return this.state.valueGood + this.state.valueBad + this.state.valueNeutral;
   }
   countPositiveFeedbackPercentage() {
