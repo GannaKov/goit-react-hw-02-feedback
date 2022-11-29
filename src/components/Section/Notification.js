@@ -1,2 +1,5 @@
 import React from 'react';
-export const Notification = () => <span>There is no feedback</span>;
+import PropTypes from 'prop-types';
+export const Notification = ({ message }) => <span>{message}</span>;
+
+Notification.propTypes = { message: PropTypes.string.isRequired };

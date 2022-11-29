@@ -4,81 +4,72 @@ import { SectionPart } from 'components/Section/Section';
 import { FeedbackOptions } from 'components/FeedbackSection/Feedback';
 import { Statistics } from 'components/Statictics/Statistics';
 import { Notification } from 'components/Section/Notification';
+import feedbackOptions from '../../feedBackOptions.json';
 
 export class App extends Component {
-  static defaultProps = {
+  state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
-  state = {
-    valueGood: this.props.good,
-    valueNeutral: this.props.neutral,
-    valueBad: this.props.bad,
-  };
+  // state = {
+  //   valueGood: this.props.good,
+  //   valueNeutral: this.props.neutral,
+  //   valueBad: this.props.bad,
+  // };
 
-  handleGood = () => {
+  handleIncrement = e => {
+    const target = e.target.name;
     this.setState(prevState => ({
-      valueGood: prevState.valueGood + 1,
+      [target]: prevState[target] + 1,
     }));
   };
-  handleNeutral = () => {
-    this.setState(prevState => ({
-      valueNeutral: prevState.valueNeutral + 1,
-    }));
-  };
-  handleBad = () => {
-    this.setState(prevState => ({
-      valueBad: prevState.valueBad + 1,
-    }));
-  };
+  // handleNeutral = () => {
+  //   this.setState(prevState => ({
+  //     valueNeutral: prevState.valueNeutral + 1,
+  //   }));
+  // };
+  // handleBad = () => {
+  //   this.setState(prevState => ({
+  //     valueBad: prevState.valueBad + 1,
+  //   }));
+  // };
 
   countTotalFeedback() {
-    return this.state.valueGood + this.state.valueBad + this.state.valueNeutral;
+    return this.state.good + this.state.bad + this.state.neutral;
   }
   countPositiveFeedbackPercentage() {
-    return Math.round((this.state.valueGood * 100) / this.countTotalFeedback());
+    return Math.round((this.state.good * 100) / this.countTotalFeedback());
   }
   render() {
     const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
     const totalFeedback = this.countTotalFeedback();
-    console.log(totalFeedback);
-    const valueGood = this.state.valueGood;
-    const valueNeutral = this.state.valueNeutral;
-    const valueBad = this.state.valueBad;
+
+    const { good, neutral, bad } = this.state;
 
     return (
       <div>
         <GlobalStyle />
         <SectionPart title="Please leave feedback">
           <FeedbackOptions
-            onGood={this.handleGood}
-            onNeutral={this.handleNeutral}
-            onBad={this.handleBad}
+            options={feedbackOptions}
+            onLeaveFeedback={this.handleIncrement}
           />
         </SectionPart>
         <SectionPart title="Statistics">
           {totalFeedback ? (
             <Statistics
-              valueGood={valueGood}
-              valueNeutral={valueNeutral}
-              valueBad={valueBad}
+              valueGood={good}
+              valueNeutral={neutral}
+              valueBad={bad}
               totalFeedback={totalFeedback}
               positiveFeedbackPercentage={positiveFeedbackPercentage}
             />
           ) : (
-            <Notification />
+            <Notification message="There is no feedback" />
           )}
         </SectionPart>
       </div>
     );
   }
 }
-// export const App = () => {
-//   return (
-//     <div>
-//       <GlobalStyle /> <SectionPart title="Please leave feedback"></SectionPart>
-//       <SectionPart title="Statistics"></SectionPart>
-//     </div>
-//   );
-// };
