@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StatWrapper,StatItem } from './Statistics.styled';
 
 export const Statistics = ({
   valueGood,
@@ -8,13 +9,13 @@ export const Statistics = ({
   totalFeedback,
   positiveFeedbackPercentage,
 }) => (
-  <div>
-    <span>Good{valueGood}</span>
-    <span>Neutral{valueNeutral}</span>
-    <span>Bad{valueBad}</span>
-    <span>Total{totalFeedback}</span>
-    <span>Positive feedback{positiveFeedbackPercentage}%</span>
-  </div>
+  <StatWrapper>
+    <StatItem>Good {valueGood}</StatItem>
+    <StatItem>Neutral {valueNeutral}</StatItem>
+    <StatItem>Bad {valueBad}</StatItem>
+    <StatItem>Total {totalFeedback}</StatItem>
+    <StatItem>Positive feedback {positiveFeedbackPercentage}%</StatItem>
+  </StatWrapper>
 );
 Statistics.propTypes = {
   valueGood: PropTypes.number.isRequired,
